@@ -1,0 +1,16 @@
+<h3>Prelievo</h3>
+<form #laForm="ngForm" (ngSubmit)="preleva()">
+  <div class="mb-3">
+    <label for="importo" class="form-label">Importo</label>
+    <input [(ngModel)]="importo" #inputImporto="ngModel" type="number" min="1" required class="form-control"
+      id="importo" name="importo" placeholder="Importo">
+
+  </div>
+  <div *ngIf="!inputImporto.valid">
+    Importo non valido
+  </div>
+  <button class="btn btn-primary" [disabled]="laForm.invalid">Preleva</button>
+</form>
+<div *ngIf="stato" [ngClass]="{'text-danger': stato.errore, 'text-success': !stato.errore}">
+  {{stato.message}}
+</div>
